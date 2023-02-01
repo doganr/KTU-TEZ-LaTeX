@@ -1,0 +1,130 @@
+%!!!!!!!!!!!
+%! Bu kisma dokunmayin ekler section icin bazi ayarlamalar yapilmaktadir
+%!!!!!!!!!!!
+%\setcounter{chapter}{\the\numexpr\thechapter+1\relax}
+\chapter{EKLER 
+	\label{chap:ekler}}
+
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\figurename}{Ek \c{S}ekil\,}
+\addtocontents{lof}{\protect\renewcommand{\protect\cftfigpresnum}{Ek \c{S}ekil\,}}
+
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\tablename}{Ek Tablo\,}
+\addtocontents{lot}{\protect\renewcommand{\protect\cfttabpresnum}{Ek Tablo\,}}
+
+\newcounter{defcounter}
+\setcounter{defcounter}{0}
+
+\newenvironment{aequation}{%
+	\addtocounter{equation}{-1}
+	\refstepcounter{defcounter}
+	\renewcommand\theequation{E.\thedefcounter}
+	\begin{equation}}
+{\end{equation}
+}
+%!!!!!!!!!!!
+%! Burdan sonra duzenlemeleriniz yapabilirsiniz
+%!!!!!!!!!!!
+
+	\textbf{Ek 1. Bulanıklık Metriği Değerinin Hesaplanması}
+	
+	$F$, bir görüntünün parlaklık bileşeni veya m$\times$n piksel boyutlu bir video karesi olsun. $F$'nin bulanıklık değerini ölçmek amacıyla gerçekleştirilen ilk adım, $F$ görüntüsünün bulanıklaştırılarak $B$ bulanık görüntüsünün elde edilmesidir. Bulanıklık efektini modellemek için dikey ve yatay yönde güçlü bir alçak-geçiren filtre ($h$) uygulanarak $B_{Ver}$ ve $B_{Hor}$ bileşenleri aşağıdaki gibi elde edilmektedir.
+	\begin{equation}
+	 h_{v}=\frac{1}{9}\left [ 1\: 1\: 1\: 1\: 1\: 1\: 1\: 1\: 1 \right ]  \;\;\;\;\;\;\;\;\;\;\;\; h_{h}=transpoz(h_{v})=h_{v}^{'}
+	\end{equation}
+	\begin{equation}
+	    B_{Ver}=h_{v}*F \;\;\;\;\;\;\;\; B_{Hor}=h_{h}*F
+	\end{equation}
+	
+	Ardından, komşu piksellerin varyasyonlarını incelemek amacıyla, $D\textunderscore F_{Ver}$, $D\textunderscore F_{Hor}$, $D\textunderscore B_{Ver}$ ve $D\textunderscore B_{Hor}$ mutlak fark görüntüleri aşağıdaki gibi hesaplanmaktadır.
+	\begin{equation}
+	    D\textunderscore F_{Ver}(i,j)=Abs(F(i,j)-F(i-1,j))\;\;\;\;\;\;for\;\;\;\;i=1\;\;\;\;to\;\;\;\;m-1,\;\;\;\;j=0\;\;\;\;to\;\;\;\;n-1
+	\end{equation}
+	\begin{equation}
+	    D\textunderscore F_{Hor}(i,j)=Abs(F(i,j)-F(i,j-1)) \;\;\;\;\;\;for\;\;\;\;j=1\;\;\;\;to\;\;\;\;n-1,\;\;\;\;i=0\;\;\;\;to\;\;\;\; m-1
+	\end{equation}
+	\begin{equation}
+	    D\textunderscore B_{Ver}(i,j)=Abs(B_{Ver}(i,j)-B_{Ver}(i-1,j)) \;\;\;\;\;\;for\;\;\;\;i=1\;\;\;\;to\;\;\;\;m-1,\;\;\;\;j=0\;\;\;\;to\;\;\;\; n-1
+	\end{equation}
+	\begin{equation}
+	    D\textunderscore B_{Hor}(i,j)=Abs(B_{Hor}(i,j)-B_{Hor}(i,j-1)) \;\;\;\;\;\;for\;\;\;\;j=1\;\;\;\;to\;\;\;\;n-1,\;\;\;\;i=0\;\;\;\;to\;\;\;\; m-1
+	\end{equation}
+	
+	Elde edilen varyasyon değerinin büyük olması, ilk görüntü veya karenin keskin olduğunu, varyasyon değerinin küçük olması ise ilk görüntü veya karenin zaten bulanık olduğunu göstermektedir. Bu varyasyon sadece aşağıdaki gibi azaltılan mutlak farklar üzerinde değerlendirilmektedir.
+	\begin{equation}
+	    V_{Ver}= Max(0,D\textunderscore F_{Ver}(i,j)-D\textunderscore B_{Ver}(i,j)) \;\;\;\;for\;\;\;\;i=1\;\;\;\;to\;\;\;\;m-1,\;\;\;\;j=1\;\;\;\;to\;\;\;\;n-1
+	\end{equation}
+	\begin{equation}
+	    V_{Hor}= Max(0,D\textunderscore F_{Hor}(i,j)-D\textunderscore B_{Hor}(i,j))\;\;\;\;for\;\;\;\;i=1\;\;\;\;to\;\;\;\;m-1, \;\;\;\;j=1\;\;\;\;to\;\;\;\;n-1
+	\end{equation}
+	
+	Daha sonra, ilk resimdeki varyasyonları karşılaştırmak için, $D\textunderscore F_{Ver}$, $D\textunderscore F_{Hor}$, $D\textunderscore V_{Ver}$, $D\textunderscore V{Hor}$ katsayılarının toplamı aşağıdaki gibi hesaplanmaktadır.
+	\begin{equation}
+	    s\textunderscore F_{Ver}=\sum_{i,j=1}^{m-1,n-1} D\textunderscore F_{Ver}(i,j) \;\;\;\;\;\;\;\;\;\;\;\; s\textunderscore V_{Ver}=\sum_{i,j=1}^{m-1,n-1} D\textunderscore V_{Ver}(i,j)
+	\end{equation}
+		\begin{equation}
+	    s\textunderscore F_{Hor}=\sum_{i,j=1}^{m-1,n-1} D\textunderscore F_{Hor}(i,j) \;\;\;\;\;\;\;\;\;\;\;\; s\textunderscore V_{Hor}=\sum_{i,j=1}^{m-1,n-1} D\textunderscore V_{Hor}(i,j)
+	\end{equation}
+	
+	
+	Son olarak, elde edilen sonuçlar [0,1] aralığında normalize edilmektedir.	
+	\begin{equation}
+	    b\textunderscore F_{Ver}=\frac{s\textunderscore F_{Ver}-s\textunderscore V_{Ver}}{s\textunderscore F_{Ver}}
+	\end{equation}
+	\begin{equation}
+	    b\textunderscore F_{Hor}=\frac{s\textunderscore F_{Hor}-s\textunderscore V_{Hor}}{s\textunderscore F_{Hor}}
+	\end{equation}
+	
+	Elde edilen $b\textunderscore F_{Ver}$ ve  $b\textunderscore F_{Hor}$ değerlerinden maksimum olanı aşağıdaki gibi $F$ görüntüsünün bulanıklık değeri olarak belirlenmektedir.
+	\begin{equation}
+	    Bulan\textit{\i}kl\textit{\i}k_{F} = Max(b\textunderscore F_{Ver}, b\textunderscore F_{Hor})
+	\end{equation}
+	
+	\textbf{Ek 2. Klasik Makine Öğrenmesine Dayalı Sınıflandırma Yöntemleri}
+
+	\textbf{A. $k$-en yakın komşuluk ($k$-NN)}
+
+	k-en yakın komşuluk (k-NN) örüntü tanıma ve veri madenciliği gibi birçok alanda yaygın olarak kullanılan en önemki sınıflandırma algoritmalarından biridir. k-NN algoritması, özellik uzayındaki en yakın eğitim örneklerine dayanmaktadır. Bilinmeyen bir örneğin eğitim setindeki k en yakın komşularının çoğunluğu belirli bir sınıfa aitse, bu bilinmeyen örnek bu sınıfa dahil edilmektedir. k parametresi, k-NN algoritmasının performansını etkilemektedir. k-NN algoritmasında en yakın komşuyu belirlemek amacıyla Öklid, Manhattan ve Minkowski gibi uzaklık hesaplama ölçütleri kullanılmaktadır.
+	
+	\begin{equation}
+		d_{\textit{\"o}klid}(x,y)=\sqrt{\sum_{i=1}^{k}(x_{i}-y_{i})^2}
+	\end{equation}
+	\begin{equation}
+		d_{manhattan}(x,y)=\sum_{i=1}^{k}\left | x_{i}-y_{i} \right |
+	\end{equation}
+	\begin{equation}
+	    d_{minkowski}(x,y)=(\sum_{i=1}^{k}(x_{i}-y_{i})^{q})^{1/q},\;q=1,2,...
+	\end{equation}
+	
+	\textbf{B. Destek Vektör Makinesi (SVM)}
+	
+	Destek Vektör Makinesi (SVM), sınıflandırma ve regresyon problemlerinde yaygın olarak kullanılan danışmanlı bir istatistiksel öğrenme algoritmasıdır. SVM algoritmasının amacı, N-boyutlu uzayda verileri, hiperdüzlemin maksimum marjinine yani her iki sınıfın veri örnekleri arasındaki mesafenin maksimum olmasını sağlayacak şekilde sınıflandıracak en iyi hiperdüzlemi bulmaktır. SVM, çekirdek fonksiyonlarını kullanarak model vektörlerinin yüksek boyutlu özellik uzayıyla eşlenmesini ve bu uzayda verilerin doğrusal olarak ayrılmasını sağlamaktadır. H hiperdüzlemi $w^{T}x+b=0$ ile tanımlanmaktadır ve H ile H+ ve H- düzlemleri arasındaki uzaklık $1/\left \| w \right \|$ değerine eşit olmaktadır.
+	
+	En iyi hiperdüzlemin elde edilebilmesi için Lagrangian fonksiyonunu kısıtlamalarla en üst seviyeye çıkaran ayarlanabilir katsayıların ($a_{i}$) $0\leq a_{i},i=1,...,n$ sağlayacak şekilde bulunması gerekmektedir:
+	\begin{equation}
+		L=\sum_{i=1}^{l}\frac{1}{2}\left \| w^{2} \right \|-\frac{1}{2}\sum_{i=1}^{l}\alpha _{i}(y_{i}(w^{T}x_{i}+b)-1)
+	\end{equation}
+	$a_{i}>0$ olmak üzere hiperdüzleme yakın olarak konumlanan bu noktalara destek vektörleri (SV) denilmektedir. İlişkili Lagrange çarpanlarına sahip destek vektörleri ayırıcı hiperdüzlemin konumunu etkileyen tek noktalardır. L2deki doğrusal olmayan dönüşüm $\varphi(x_{i})^{^T}\varphi(x_{j})$ skaler çarpımı şeklinde yazılabilmektedir. Daha yüksek boyutlu uzaya haritalama ise $K(x_{i},x_{j})=\varphi(x_{i})^{^T}\varphi(x_{j})$ çekirdek fonksiyonları ile sağlanmaktadır. 
+	
+	Çekirdek fonksiyonunu kullanan ayırıcı karar fonksiyonu aşağıdaki gibi tanımlanmaktadır. 
+	\begin{equation}
+		f(x)=sign(\sum_{i=1}^{l}y_{i}\alpha_{i}K(x_{i},x)+b)
+	\end{equation}
+	Burada $x$ giriş vektörünü, $y$ hedef değeri ve $K(x_{i},x)$ çekirdek fonksiyonu göstermektedir.
+	
+	\textbf{C. Rastgele Ormanlar (RF)}
+	
+	Rastgele Ormanlar (RF) algoritması, veri örneklerini birçok sınıflandırma ağacına göre sınıflandırmaktadır. Her bir ağaç ayrı sınıflandırma sonucu vermektedir. RF ilgili karar ağacı çıkışlarını aşağıdaki gibi birleştirmektedir.
+	\begin{equation}
+		h(x,\theta _{k}), k=1,...,K
+	\end{equation}
+	
+	Burada $\theta _{k}$ bağımsız ve aynı şekilde dağıtılmış rastgele özellik örneklerini, $K$ ise ağaç sayısını göstermektedir. Ağaç sayısı $K$ kullanıcı tarafından tanımlanmaktadır. Her bir ağaç $x$'in çoğunluğa ulaştığı örneklerin sınıfı hakkında oy birliği sağlamaktadır. 
+	
+	RF algoritması büyük miktarda veri ile başa çıkmak için etkili ve hızlı bir yöntemdir. RF varyansı azaltmanın yanısıra karşılaştırılabilir sınıflandırma doğruluğu elde etme avantajlarını sunmaktadır.
+	
+	
+	%\chapter{Algoritma}

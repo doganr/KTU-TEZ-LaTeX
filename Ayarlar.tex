@@ -1,0 +1,215 @@
+\documentclass[hidelinks]{ktutez}
+\usepackage[top=40mm, bottom=25mm, left=30mm, right=25mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{ragged2e}
+\usepackage[dotinlabels]{titletoc}
+\usepackage[titletoc]{appendix}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{rotating}
+\usepackage{epstopdf}
+\usepackage[table,usenames,dvipsnames]{xcolor}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{tabularx}
+%\usepackage{tabu}
+\usepackage{array}
+\usepackage{lscape}
+\usepackage{indentfirst}
+\usepackage{afterpage}
+%\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\usepackage[bookmarks=false]{hyperref}
+\usepackage{etoolbox}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage[none]{hyphenat}
+\usepackage{fp}
+\usepackage[font=normalsize]{caption}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,shadows}
+\usepackage[fleqn]{amsmath}
+%\usepackage{bm,times}
+\usepackage{bm,times}
+%\usepackage{fontspec}
+%\setmainfont{Times New Roman}
+\usepackage{verbatim}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{array}
+\usepackage{lastpage}
+\usepackage{soul}
+\usepackage{blindtext}
+\usepackage{mathptmx}
+\usepackage{hepnicenames}
+%\usepackage{enumerate}
+\usepackage{microtype}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage[justification=justified,singlelinecheck=false, font=singlespacing]{caption}
+\usepackage{setspace}
+\usepackage{placeins}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[acronym,toc]{glossaries}
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+
+%referanslarda makalelerin altini cizdirmek icin trick
+\usepackage {ulem}
+%referanslarda url lerin fontunu duzeltmek icin trick
+\urlstyle{same}
+
+
+%\usepackage[noadjust]{cite}
+%\renewcommand{\citedash}{-}
+
+\usepackage{etoolbox}%chapter baslangic sayfası numarayı gösterme
+\patchcmd{\chapter}{plain}{empty}{}{}
+\patchcmd{\part}{plain}{empty}{}{}
+%\usepackage{caption}
+\usepackage{mwe} % just for dummy images
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%%% For tables
+%\usepackage{multirow}
+% Longtable lets you have tables that span multiple pages.
+%\usepackage{longtable}
+%for equations
+%\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{algorithmic}
+\usepackage{algorithm}
+%\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+%\usepackage[]{algorithm2e}
+% Booktabs produces far nicer tables than the standard LaTeX tables.
+%   see: http://en.wikibooks.org/wiki/LaTeX/Tables
+%\usepackage{booktabs}
+%\usepackage{afterpage}
+%\usepackage[toc]{glossaries}
+%set parameters for longtable:
+% default caption width is 4in for longtable, but wider for normal tables
+%\setlength{\LTcapwidth}{\textwidth}
+%\usepackage[demo]{graphicx}
+%\usepackage[position=t,singlelinecheck=off]{subfig}
+%\usepackage{caption}
+%%%%%%%%%%YATAY TABLO
+%\usepackage{graphicx,rotating,booktabs}
+\usepackage{graphicx}
+\usepackage{subcaption}
+%\usepackage[verbose]{placeins}
+%\usepackage[ngerman]{babel}
+%\usepackage{blindtext}
+%tablolar ve figurler listesinde cite order i durdurmak icin
+\usepackage{notoccite}
+\usepackage{adjustbox}
+\usepackage{pbox}
+
+%%%%%%%%%%YATAY TABLO
+\captionsetup[table]{position=t}
+
+%% Bu satırdan itibaren bazı ayar komutları başlamaktadır, eğer fazla bilginiz yoksa bu satırlarda değişiklik yapmayın.
+\captionsetup{labelsep=period}
+\newcommand{\mx}[1]{\mathbf{\bm{#1}}} % Matrix command
+\newcommand{\vc}[1]{\mathbf{\bm{#1}}} % Vector command
+
+\newsavebox\mytabularbox
+\newcount\figwidthc
+\newcount\textwidthc
+
+\renewcommand{\cftdotsep}{0.1}%%icindekilerde noktalar arasi boosluk \titlerule ile ayni
+\titlecontents{chapter}[0.9em]{\addvspace{0em}}{\contentslabel{1.7em}\hspace*{2.8em}}{.}{\titlerule*[0.2pc]{.}\contentspage}
+
+\titleformat{\chapter}{\normalfont\fontsize{12}{12}\bfseries}{\thechapter . \hspace{0.2em}}{0em}{}
+
+\titleformat{\section}{\normalfont\fontsize{12}{12}\bfseries}{\thesection . \hspace{0.2em}}{0em}{}
+
+\titleformat{\subsection}{\normalfont\fontsize{12}{12}\bfseries}{\thesubsection . \hspace{0.2em}}{0em}{}
+  
+\titleformat{\subsubsection}{\normalfont\fontsize{12}{12}\bfseries}{\thesubsubsection . \hspace{0.2em}}{0em}{}  
+ 
+\titleformat{\paragraph}{\normalfont\fontsize{12}{12}\bfseries}{\theparagraph . \hspace{0.2em}}{0em}{}  
+
+%% içindekiler numara başlık arasındaki boşluk
+\cftsetindents{chapter}{-0.9em}{4.7em} 
+\cftsetindents{section}{-0.9em}{4.7em}
+\cftsetindents{subsection}{-0.9em}{4.7em}
+\cftsetindents{subsubsection}{-0.9em}{4.7em}
+\cftsetindents{paragraph}{-0.9em}{4.7em}
+  
+\pagenumbering{Roman}
+\setcounter{page}{3}
+
+%%tez meta bilgisini cagiriyoruz
+\include{Meta}
+
+%%semboller dizini icin
+%\include{Semboller2}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{preexam}{Example}
+\newenvironment{exam} {\begin{preexam}\rm}{\end{preexam}}
+\newtheorem{lem}{Lemma}
+\newtheorem{proprty}{Property}
+\newtheorem{cor}{Corollary}
+\newtheorem{defn}{Definition}
+\newcommand{\pe}{\preceq}
+\newcommand{\po}{\prec}
+
+\widowpenalty=10000
+\clubpenalty=10000
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\tolerance=1000
+\sloppy % bu komut sayfadan taşan metni sayfa sınırlarına oturtur.
+
+\setstretch{1.43}
+
+%% Şekiller listesinde Şekil yazısı çıkması için gerekli satırlar
+\renewcommand{\cftfigpresnum}{Şekil }
+\renewcommand{\cftfigaftersnum}{.\,}% Şekil numarasından sonra nokta koyar
+\setlength{\cftfignumwidth}{5.1em}
+\setstretch{1.43}
+
+%% Tablolar listesinde Tablo yazısı çıkması için gerekli satırlar
+\renewcommand{\cfttabpresnum}{Tablo }
+\renewcommand{\cfttabaftersnum}{.\,} % Tablo numarasından sonra nokta koyar
+\setlength{\cfttabnumwidth}{5.1em}%Tablo numarası ve etiketinin genişliğini ayarlar.
+\setlength{\LTpre}{-6pt}
+\setlength{\LTpost}{-18pt}
+\renewcommand{\cftsecaftersnum}{.}% Alt başlık numarasından sonra nokta koyar
+\renewcommand{\cftsubsecaftersnum}{.}% Küçük alt başlık numarasından sonra nokta koyar
+
+\addtocontents{toc}{~\hfill{\bf\underline{Sayfa No}}\vspace{0.3cm}\par} % İçindekiler listesinde sayfa no yazısı ekler
+\addtocontents{lof}{~\hfill{\bf\underline{Sayfa No}}\vspace{0.3cm}\par} % Şekiller listesinde sayfa no yazısı ekler
+\addtocontents{lot}{~\hfill{\bf\underline{Sayfa No}\vspace{0.3cm}}\par} % Çizelgeler listesinde sayfa no yazısı ekler
+
+\arrayrulecolor{black}
+
+\titlespacing*{\chapter}{30pt}{20pt}{20pt}
+\titlespacing*{\section}{30pt}{20pt}{20pt}
+\titlespacing*{\subsection}{30pt}{20pt}{20pt}
+\titlespacing*{\subsubsection}{30pt}{20pt}{20pt}
+\titlespacing*{\paragraph}{30pt}{20pt}{20pt}
+
+\captionsetup[figure]{format=hang, margin={0.2cm,0cm}}
+\captionsetup[table]{format=hang} %% table title align ayarı
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+
+
+\setlength\cftparskip{4pt}
+\setlength\cftbeforesecskip{4pt}
+\setlength\cftaftertoctitleskip{4pt}
+\setlength\cftbeforefigskip{4pt}
+\setlength\cftbeforetabskip{4pt}
+
+\setlength{\parskip}{2pt plus4mm minus3mm}
+\setlength{\parindent}{1cm}
+
+\captionsetup[table]{aboveskip=6pt}
+\captionsetup[table]{belowskip=6pt}
+\captionsetup[figure]{aboveskip=2pt}
+\captionsetup[figure]{belowskip=-6pt}

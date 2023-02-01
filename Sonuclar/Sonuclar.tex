@@ -1,0 +1,42 @@
+\chapter{SONUÇLAR \label{sec:Sonuclar2}}
+
+Bu tez çalışmasında pankreas hastalıkları bulunan kişilerin sağkalım oranını artırmak, tanı, tedavi ve cerrahide tıp doktorlarına yardımcı olmak için pankreas ve pankreas tümörü segmentasyonu gerçekleştirmek amaçlanmaktadır. Bu kapsamda derin öğrenme tabanlı yaklaşımlar önerilmektedir. Tez çalışmamız iki farklı kısımdan oluşmaktadır. Önerilen yaklaşımların abdominal kontrastlı pankreas BT dilimleri üzerinde gerçekleştirilen deneyleri, elde edilen görsel ve sayısal sonuçları irdelenmektedir. Bu bölümde, elde edilen sonuçlar tezin her iki kısmı için ayrı ayrı sunulacaktır. 
+
+Tez çalışmasının ilk kısmında kabadan inceye yöntemi ile pankreas ilgi bölgesinin belirlenmesi ve bu ilgi bölgesinde pankreas segmentasyonunun gerçekleştirilmesine yönelik bir yaklaşım önerilmektedir. Bu yaklaşım Pankreas İlgi Bölgesinin Belirlenmesi ve İlgi Bölgesinde Pankreas Segmentasyonu olmak üzere iki fazdan oluşmaktadır. Tez çalışmasında birinci kısım olan Pankreas Segmentasyonu için NIH veri seti kullanılmaktadır. Performans değerlendirme metrikleri olarak Dice Benzerlik Katsayısı (Dice Similarity Coefficient - DSC), Jaccard İndeksi (Jaccard Index - JI), Kesinlik (Precision - PRE), Duyarlılık (Recall - REC), Doğruluk (Accuracy - ACC), Özgüllük (Specificity - SPE), ROC (Receiver Operating Characteristics) Eğrisi ve ROC Eğrisinin Alt Alanı (Area under the ROC Curve – AUC) tercih edilmektedir. Bu kısımda elde edilen sonuçlar şu şekilde sıralanabilmektedir:
+
+\begin{enumerate}
+	\item Literatür çalışmaları farklı anatomik yapılara (boyut, şekil ve pozisyon) sahip pankreas gibi organların otomatik segmentasyonunun hala zorlu bir alan olduğunu göstermektedir. Önerilen yaklaşım bu görevi literatürdeki çalışmaların aksine, Pankreas İlgi Bölgesinin Belirlenmesi ve Pankreas Segmentasyonu olmak üzere iki ana aşamada formüle ederek bu zorluğu ortadan kaldırmaktadır.
+	
+	\item Önerilen iki fazlı yaklaşım (Pankreas İlgi Bölgesinin Belirlenmesi - Mask R-CNN + Pankreas Segmentasyonu – 3B U-Net) pankreas segmentasyonunun başarısını sadece birinci faza (Pankreas Pankreas İlgi Bölgesinin Belirlenmesi - Mask R-CNN) ve sadece ikinci faza (Pankreas Segmentasyonu – 3B U-Net) göre arttırmaktadır. 
+	
+    \item İlk aşamada (Pankreas İlgi Bölgesinin Belirlenmesi) obje tanıma tabanlı, gerçek zamanlı segmentasyon ve konumlandırma yapabilen Mask R-CNN modeli kullanılarak daha doğru segmentasyon sonuçları üretilmekte, hesaplama karmaşıklığı ve maliyeti azaltılmaktadır.
+    
+    \item Önerilen yaklaşımın ikinci aşaması (Pankreas Segmentasyonu), önceki aşamada üretilen 2B alt BT dilimleri girdi olarak alarak pankreas segmentasyonu için işlenen bölgelerin boyutu küçültülmektedir.
+    
+    \item Yüksek kapasiteli bir GPU'ya ihtiyaç duymadan yüksek performans elde edilebileceği bu tez çalışmasında kanıtlanmaktadır.
+
+    \item Literatür çalışmalarına göre önerilen yaklaşım ile segmente edilen bölgeler radyolog tarafından işaretlenen pankreas bölgelerine daha çok benzemektedir.
+
+    \item Elde edilen performans değerlendirme metriklerinin sonuçlarına göre önerilen iki fazlı yaklaşımın her kat için daha yüksek performans sağladığı görülmektedir. 
+
+    \item Performans değerlendirme metriklerinin sonuçları, önerilen yaklaşımın pankreasın farklı anatomik yapıları için kararlı segmentasyon sonuçları verdiğini göstermektedir
+
+\end{enumerate}
+
+İkinci kısımda ise pankreas ve pankreas tümör dokularını segmente etmek için ilk kısımda önerilen iki fazlı yöntem tekrar dizayn edilmekte ve her fazın performanslarında gerçekleştirilebilecek iyileştirmeler incelenmektedir. Tez çalışmasının bu kısmı Pankreas İlgi Bölgesinin Belirlenmesi ve İlgi Bölgesinde Pankreas ve Pankreas Tümörü Segmentasyonu olmak üzere iki fazdan oluşmaktadır. Tez çalışmasında ikinci kısım olan Pankreas ve Pankreas Tümörü Segmentasyonu için MSD veri seti kullanılmaktadır. Performans değerlendirme metrikleri olarak Dice Benzerlik Katsayısı (Dice Similarity Coefficient - DSC), Jaccard İndeksi (Jaccard Index - JI), Kesinlik (Precision - PRE), Duyarlılık (Recall - REC), Doğruluk (Accuracy - ACC) ve Özgüllük (Specificity – SPE) tercih edilmektedir. Bu kısımda elde edilen sonuçlar şu şekilde sıralanabilmektedir:
+
+\begin{enumerate}
+
+    \item Otomatik pankreas tümör segmentasyonu literatürde hala zor bir alan olmasına rağmen, bu çalışmada iki aşamalı yöntem uygulanarak daha yüksek doğrulukta sonuçlar elde edilmektedir.
+    
+    \item Performans değerlendirme metriklerinin sonuçları açısından, önerilen yaklaşımın etkinliğinin, otomatik pankreas ve pankreas tümörü segmentasyonu için literatürdeki çalışmalardan daha üstün olduğu açıkça görülmektedir.
+    
+    \item Performans değerlendirme metrikleri sonuçlarına göre pankreas tümör segmentasyonu için en performanslı modelin 3B U-Net++ olduğu görülmektedir.
+    
+    \item Önerilen tez çalışması öncelikle Pankreas İlgi Bölgesinin Tespiti aşamasında kaba pankreas bölgesini çıkarmaktadır. Daha sonra ikinci aşamada (Pankreas ve Pankreas Tümör Segmentasyonu) ilk aşamada kaba olarak bulunan pankreas bölgesinden pankreas tümör bölgesi segmente edilmektedir. Gerçekleştirilen literatür araştırmasına göre otomatik pankreas ve pankreas tümörü segmentasyonu için işlenen bölgeyi azaltarak başarıyı artıran ilk çalışmalardan biridir. 
+    
+    \item Bu çalışma otomatik pankreas tümörü segmentasyonu için ilk aşamada üretilen 2B alt BT görüntülerinin boyutunu azaltmaktadır. Bu nedenle, bu çalışma daha yüksek doğruluklu pankreas tümörü segmentasyon sonuçları üretmekte, hesaplama maliyetini ve karmaşıklığını düşürmektedir.
+    
+    \item Tez çalışmasında otomatik pankreas tümörü segmentasyonu sürecinde daha düşük boyutlu 2B alt BT görüntülerinin işlenmesi nedeniyle, GPU kapasitesi daha düşük olan çalışmamız, daha güçlü GPU kapasiteli diğer literatür çalışmalarına göre daha yüksek doğrulukta sonuçlar üretebilmektedir. 
+
+\end{enumerate}
